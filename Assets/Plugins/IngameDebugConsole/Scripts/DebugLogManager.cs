@@ -37,8 +37,6 @@ namespace IngameDebugConsole
         [Header("Properties")]
         [SerializeField, HideInInspector] private bool singleton = true;
         [SerializeField, HideInInspector] private float minimumHeight = 200f; // Minimum height of the console window
-        [SerializeField, HideInInspector] private bool enablePopup = true;
-        [SerializeField, HideInInspector] private bool startInPopupMode = true;
         [SerializeField, HideInInspector] private bool toggleWithKey = false;
         [SerializeField, HideInInspector] private KeyCode toggleKey = KeyCode.BackQuote;
         [SerializeField, HideInInspector] private bool clearCommandAfterExecution = true; // Should command input field be cleared after pressing Enter
@@ -226,13 +224,13 @@ namespace IngameDebugConsole
         // Launch in popup mode
         private void Start()
         {
-            if (enablePopup && startInPopupMode)
-                ShowPopup();
+            if (Debug.isDebugBuild)
+                popupManager.Show();
             else
-            {
-                ShowLogWindow();
-                popupManager.gameObject.SetActive(enablePopup);
-            }
+                popupManager.Hide();
+
+            isLogWindowVisible = false;
+            popupManager.gameObject.SetActive(!Application.isEditor);
         }
 
         // Window is resized, update the list

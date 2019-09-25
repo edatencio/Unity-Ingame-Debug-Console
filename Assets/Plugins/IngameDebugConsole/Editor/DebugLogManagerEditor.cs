@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 
 namespace IngameDebugConsole
 {
@@ -36,11 +36,6 @@ namespace IngameDebugConsole
 
 			EditorGUILayout.PropertyField( singleton );
 			EditorGUILayout.PropertyField( minimumHeight );
-			EditorGUILayout.PropertyField( enablePopup );
-
-			if( enablePopup.boolValue )
-				DrawSubProperty( startInPopupMode );
-
 			EditorGUILayout.PropertyField( toggleWithKey );
 
 			if( toggleWithKey.boolValue )
