@@ -156,7 +156,7 @@ namespace IngameDebugConsole
 		{
 			foreach( var entry in methods )
 			{
-				if( entry.Key.StartsWith( commandStart ) )
+				if( entry.Key.ToLowerInvariant().StartsWith( commandStart ) )
 					return entry.Key;
 			}
 
@@ -373,14 +373,16 @@ namespace IngameDebugConsole
 
 		private static bool ParseBool( string input, out object output )
 		{
-			if( input == "1" || input.ToLowerInvariant() == "true" )
+            input = input.ToLowerInvariant();
+
+			if( input == "1" || input == "t" || input == "true" || input == "y" || input == "yes" || input == "on")
 			{
 				output = true;
 				return true;
 			}
 
-			if( input == "0" || input.ToLowerInvariant() == "false" )
-			{
+			if( input == "0" || input == "f" || input == "false" || input == "n" || input == "no" || input == "off")
+            {
 				output = false;
 				return true;
 			}
