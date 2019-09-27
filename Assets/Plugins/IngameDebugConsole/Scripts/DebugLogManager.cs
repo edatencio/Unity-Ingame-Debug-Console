@@ -193,8 +193,6 @@ namespace IngameDebugConsole
 #endif
             }
 
-            DebugLogConsole.AddCommandInstance("save_logs", "Saves logs to a file", "SaveLogsToFile", this);
-
             //Debug.LogAssertion( "assert" );
             //Debug.LogError( "error" );
             //Debug.LogException( new System.IO.EndOfStreamException() );
@@ -667,14 +665,14 @@ namespace IngameDebugConsole
             ValidateScrollPosition();
         }
 
-        public string GetAllLogs()
+        public static string GetAllLogs()
         {
-            int count = uncollapsedLogEntriesIndices.Count;
+            int count = instance.uncollapsedLogEntriesIndices.Count;
             int length = 0;
             int newLineLength = System.Environment.NewLine.Length;
             for (int i = 0; i < count; i++)
             {
-                DebugLogEntry entry = collapsedLogEntries[uncollapsedLogEntriesIndices[i]];
+                DebugLogEntry entry = instance.collapsedLogEntries[instance.uncollapsedLogEntriesIndices[i]];
                 length += entry.logString.Length + entry.stackTrace.Length + newLineLength * 3;
             }
 
@@ -683,19 +681,11 @@ namespace IngameDebugConsole
             System.Text.StringBuilder sb = new System.Text.StringBuilder(length);
             for (int i = 0; i < count; i++)
             {
-                DebugLogEntry entry = collapsedLogEntries[uncollapsedLogEntriesIndices[i]];
+                DebugLogEntry entry = instance.collapsedLogEntries[instance.uncollapsedLogEntriesIndices[i]];
                 sb.AppendLine(entry.logString).AppendLine(entry.stackTrace).AppendLine();
             }
 
             return sb.ToString();
-        }
-
-        private void SaveLogsToFile()
-        {
-            string path = Path.Combine(Application.persistentDataPath, System.DateTime.Now.ToString("dd-MM-yyyy--HH-mm-ss") + ".txt");
-            File.WriteAllText(path, instance.GetAllLogs());
-
-            Debug.Log("Logs saved to: " + path);
         }
 
         // Pool an unused log item
