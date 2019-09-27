@@ -38,7 +38,7 @@ namespace IngameDebugConsole
         [SerializeField, HideInInspector] private bool singleton = true;
         [SerializeField, HideInInspector] private float minimumHeight = 110f; // Minimum height of the console window
         [SerializeField, HideInInspector] private bool toggleWithKey = false;
-        [SerializeField, HideInInspector] private KeyCode toggleKey = KeyCode.BackQuote;
+        [SerializeField, HideInInspector] private KeyCode toggleKey = KeyCode.F1;
         [SerializeField, HideInInspector] private bool clearCommandAfterExecution = true; // Should command input field be cleared after pressing Enter
         [SerializeField, HideInInspector] private int commandHistorySize = 15;
         [SerializeField, HideInInspector] private bool receiveLogcatLogsInAndroid = false;
@@ -341,6 +341,9 @@ namespace IngameDebugConsole
             recycledListView.OnLogEntriesUpdated(true);
 
             isLogWindowVisible = true;
+
+            commandInputField.Select();
+            commandInputField.ActivateInputField();
         }
 
         public void ShowPopup()

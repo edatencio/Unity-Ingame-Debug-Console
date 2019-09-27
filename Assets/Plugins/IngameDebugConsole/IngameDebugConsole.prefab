@@ -384,7 +384,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22426080}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -785,7 +785,7 @@ MonoBehaviour:
   singleton: 1
   minimumHeight: 110
   toggleWithKey: 1
-  toggleKey: 9
+  toggleKey: 282
   clearCommandAfterExecution: 1
   commandHistorySize: 15
   receiveLogcatLogsInAndroid: 0
