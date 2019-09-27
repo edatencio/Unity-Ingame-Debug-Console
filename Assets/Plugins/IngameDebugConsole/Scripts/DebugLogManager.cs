@@ -36,7 +36,7 @@ namespace IngameDebugConsole
         // Debug console will persist between scenes
         [Header("Properties")]
         [SerializeField, HideInInspector] private bool singleton = true;
-        [SerializeField, HideInInspector] private float minimumHeight = 200f; // Minimum height of the console window
+        [SerializeField, HideInInspector] private float minimumHeight = 110f; // Minimum height of the console window
         [SerializeField, HideInInspector] private bool toggleWithKey = false;
         [SerializeField, HideInInspector] private KeyCode toggleKey = KeyCode.BackQuote;
         [SerializeField, HideInInspector] private bool clearCommandAfterExecution = true; // Should command input field be cleared after pressing Enter
@@ -167,8 +167,8 @@ namespace IngameDebugConsole
             recycledListView.Initialize(this, collapsedLogEntries, indicesOfListEntriesToShow, logItemPrefab.Transform.sizeDelta.y);
             recycledListView.UpdateItemsInTheList(true);
 
-            if (minimumHeight < 200f)
-                minimumHeight = 200f;
+            if (minimumHeight < 110f)
+                minimumHeight = 110f;
 
             nullPointerEventData = new PointerEventData(null);
         }
